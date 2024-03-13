@@ -7,4 +7,4 @@ data class Category(
     val strCategoryDescription: String
 )
 
-data class CategoryResponse(val categories: List<Category>)
+data class CategoriesResponse(val categories: List<Category>)
