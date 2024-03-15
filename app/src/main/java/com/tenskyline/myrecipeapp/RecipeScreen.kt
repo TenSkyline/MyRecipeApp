@@ -65,7 +65,6 @@ fun CategoryItem(category: Category) {
         Image(painter = rememberAsyncImagePainter(model = category.strCategoryThumb), contentDescription = null, modifier = Modifier
             .fillMaxSize()
             .aspectRatio(1f))
-
         Text(
             text = category.strCategory,
             color = Color.Black,
