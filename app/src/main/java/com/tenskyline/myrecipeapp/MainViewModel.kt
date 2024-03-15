@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val _categorieState = mutableStateOf(RecipeState())
-    val categorieState : State<RecipeState> = _categorieState
+    val categoriesState : State<RecipeState> = _categorieState
 
     init {
         fetchCategories()

@@ -1,6 +1,6 @@
 package com.tenskyline.myrecipeapp
 
 sealed class Screen(val route:String) {
-    object RecipeScreen:Screen("recipe_screen")
-    object DetailScreen:Screen("detail_screen")
+    data object RecipeScreen:Screen("recipe_screen")
+    data object DetailScreen:Screen("detail_screen")
 }

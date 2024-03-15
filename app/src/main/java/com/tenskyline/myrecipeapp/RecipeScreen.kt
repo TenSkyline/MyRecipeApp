@@ -24,9 +24,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun RecipeScreen(modifier: Modifier = Modifier, navigateToDetail: (Category) -> Unit) {
-    val recipeViewModel: MainViewModel = viewModel()
-    val viewstate by recipeViewModel.categorieState
+fun RecipeScreen(
+    modifier: Modifier = Modifier,
+    viewstate: MainViewModel.RecipeState,
+    navigateToDetail: (Category) -> Unit
+) {
+
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             viewstate.loading -> {
@@ -48,8 +51,7 @@ fun RecipeScreen(modifier: Modifier = Modifier, navigateToDetail: (Category) -> 
 @Composable
 fun CategoryScreen(categories: List<Category>, navigateToDetail: (Category) -> Unit) {
     LazyVerticalGrid(columns = GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
-        items(categories) {
-            category ->
+        items(categories) { category ->
             CategoryItem(category = category, navigateToDetail)
         }
     }
@@ -63,12 +65,16 @@ fun CategoryItem(category: Category, navigateToDetail: (Category) -> Unit) {
             .padding(8.dp)
             .fillMaxSize()
             .clickable {
-                       navigateToDetail(category)
+                navigateToDetail(category)
             }, horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(painter = rememberAsyncImagePainter(model = category.strCategoryThumb), contentDescription = null, modifier = Modifier
-            .fillMaxSize()
-            .aspectRatio(1f))
+        Image(
+            painter = rememberAsyncImagePainter(model = category.strCategoryThumb),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxSize()
+                .aspectRatio(1f)
+        )
         Text(
             text = category.strCategory,
             color = Color.Black,
